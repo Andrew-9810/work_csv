@@ -8,11 +8,17 @@ from django.template import loader
 
 def org_list(request):
     template = 'openData_csv/org_list.html'
+    title = 'Организации'
     data = OpenData.objects.all()
+
     data_name = []
     for d in data:
         data_name.append(d.orgname)
-    return render(request, template, {'context': data_name})
+    context = {
+        'title': title,
+        'text': data_name,
+    }
+    return render(request, template, context)
 
 
 # def create(request):
