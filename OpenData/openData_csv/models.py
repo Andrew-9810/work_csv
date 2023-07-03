@@ -6,15 +6,24 @@ class Tipe(models.Model):
     """Справочник для хранения типа организации"""
     tipe = models.CharField('Тип организации', max_length=100)
 
+    def __str__(self):
+        return self.tipe
+
 
 class Post(models.Model):
     """Справочник для хранения должности"""
     post = models.CharField('Должность', max_length=50)
 
+    def __str__(self):
+        return self.post
+
 
 class Orgfunc(models.Model):
     """Справочник для хранения деятельности организации"""
     orgfunc = models.TextField('Деятельность организации')
+
+    def __str__(self):
+        return self.orgfunc
 
 
 class OpenData(models.Model):
@@ -24,16 +33,19 @@ class OpenData(models.Model):
     orgpubname = models.TextField('Публичное наименование')
     tipe = models.ForeignKey(
         Tipe,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name='Тип организации'
     )
     post = models.ForeignKey(
         Post,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name='Должность'
     )
     rukfio = models.CharField('Должностное лицо ФИО', max_length=50)
     orgfunc = models.ForeignKey(
         Orgfunc,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name='Деятельность организации'
     )
     index = models.CharField('Индекс', max_length=6)
     region = models.CharField('Субъект РФ', max_length=60)
@@ -52,3 +64,7 @@ class OpenData(models.Model):
     ogrn = models.CharField('ОГРН', max_length=14)
     inn = models.CharField('ИНН', max_length=10)
     # schedule =
+
+
+    def __str__(self):
+        return self.orgsokrname

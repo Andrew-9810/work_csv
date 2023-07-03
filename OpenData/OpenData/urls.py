@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('openData_csv.urls')),
+    path('', include('openData_csv.urls', namespace='open')),
     path('admin/', admin.site.urls),
 ]
